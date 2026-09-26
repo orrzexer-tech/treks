@@ -60,16 +60,74 @@
     <link rel="apple-touch-icon" href="./icon-192.png">
 </head>
 <body>
-    
-    <div style="position:fixed;top:10px;left:55px;z-index:9999;background:white;padding:12px 14px;border:1px solid #777;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.2);font:13px Arial;max-width:500px">
-<b style="font-size:17px">MONT blanc — 6 scenic trek — revised Day 1</b><br>
-<span>Main route uses actual uploaded GPX geometry. The yellow Day 4 addition is also exact GPX geometry. Day 1 is intentionally simplified: it no longer climbs to Brévent, so it avoids the previous ~26 km / ~2400 m day.</span>
-<table style="border-collapse:collapse;width:100%;margin-top:8px"><tr><th align="left">Day</th><th align="left">Distance</th><th align="left">Route</th></tr><tr><td><b>Day 1</b></td><td>16.1 km</td><td>Chamonix/Les Praz → Lac Blanc → Argentière</td></tr><tr><td><b>Day 2</b></td><td>15.4 km</td><td>Argentière → Posettes → Col de Balme → Trient</td></tr><tr><td><b>Day 3</b></td><td>14.8 km</td><td>Trient → Fenêtre d’Arpette → Champex</td></tr><tr><td><b>Day 4</b></td><td>18.4 km</td><td>Champex → Issert → Praz-de-Fort → La Fouly</td></tr><tr><td><b>Day 5</b></td><td>19.6 km</td><td>La Fouly → Grand Col Ferret → Val Ferret → Bonatti</td></tr><tr><td><b>Day 6</b></td><td>15.3 km</td><td>Bonatti → Mont de la Saxe → Bertone → Courmayeur</td></tr></table>
-<br><b>Main-route GPX distance:</b> 94.9 km<br><b>With optional additions:</b> ≈108.5 km
-<br><small>Day 1 mountain GPX begins at Les Praz. Chamonix is marked as the trip start; the short Chamonix → Les Praz urban approach is not drawn as a fake straight line.</small>
-<br><small>Brévent and Lac du Fouet remain visible as optional highlights but are not claimed as part of the revised Day 1.</small>
-</div>
-    <div style="position:fixed;bottom:20px;left:20px;z-index:9999;background:white;padding:10px;border:1px solid #777;border-radius:6px;font:12px Arial"><b>Legend</b><br>🟥 Day 1 &nbsp; 🟦 Day 2 &nbsp; 🟩 Day 3<br>🟪 Day 4 &nbsp; 🟧 Day 5 &nbsp; 🟫 Day 6<br><br>🛏️ sleep &nbsp; 🏘️ city/village &nbsp; ◉ viewpoint<br>★ key point &nbsp; S start &nbsp; E end<br><span style="color:#666">Optional</span> = not part of the revised main route<br><span style="color:#d4a900;font-weight:bold">━</span> Yellow = selected optional additions</div>
+    <style>
+      #mbMenuBtn{
+        position:fixed;top:92px;left:10px;z-index:10000;
+        width:42px;height:42px;border:1px solid rgba(0,0,0,.22);border-radius:50%;
+        background:rgba(255,255,255,.96);box-shadow:0 2px 10px rgba(0,0,0,.24);
+        font:700 24px/38px Arial;color:#333;text-align:center;cursor:pointer;
+        -webkit-tap-highlight-color:transparent;
+      }
+      #mbMenuPanel{
+        position:fixed;top:144px;left:10px;z-index:9999;
+        width:min(410px,calc(100vw - 20px));max-height:72vh;overflow:auto;
+        background:rgba(255,255,255,.98);padding:14px 16px;border:1px solid #aaa;border-radius:10px;
+        box-shadow:0 4px 18px rgba(0,0,0,.26);font:13px Arial;display:none;
+      }
+      #mbMenuPanel table{border-collapse:collapse;width:100%;margin-top:8px}
+      #mbMenuPanel th,#mbMenuPanel td{padding:5px 4px;border-bottom:1px solid #e5e5e5;text-align:left;vertical-align:top}
+      #mbMenuPanel .mb-menu-title{font-size:17px;font-weight:700;margin-bottom:6px}
+      #mbMenuPanel .mb-legend{margin-top:10px;line-height:1.65}
+      .mb-km-icon{background:transparent !important;border:0 !important;}
+      .mb-km-sign{width:26px;height:20px;line-height:20px;text-align:center;background:rgba(255,255,255,.96);border:1px solid #333;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.35);font:bold 10px Arial;color:#111;}
+      @media (max-width:600px){
+        #mbMenuBtn{top:92px;left:10px}
+        #mbMenuPanel{top:140px;left:10px;width:calc(100vw - 20px);max-height:68vh;padding:13px 14px}
+        #mbMenuPanel table{font-size:12px}
+      }
+    </style>
+    <button id="mbMenuBtn" aria-label="Menu" title="Menu">⋯</button>
+    <div id="mbMenuPanel">
+      <div class="mb-menu-title">MONT blanc — 6 scenic trek</div>
+      <div>Main route uses actual uploaded GPX geometry.</div>
+      <table>
+        <tr><th>Day</th><th>Distance</th><th>Route</th></tr>
+        <tr><td><b>Day 1</b></td><td>16.1 km</td><td>Chamonix/Les Praz → Lac Blanc → Argentière</td></tr>
+        <tr><td><b>Day 2</b></td><td>15.4 km</td><td>Argentière → Posettes → Col de Balme → Trient</td></tr>
+        <tr><td><b>Day 3</b></td><td>14.8 km</td><td>Trient → Fenêtre d’Arpette → Champex</td></tr>
+        <tr><td><b>Day 4</b></td><td>13.7 km</td><td>Champex → Issert → Praz-de-Fort → La Fouly</td></tr>
+        <tr><td><b>Day 5</b></td><td>19.6 km</td><td>La Fouly → Grand Col Ferret → Val Ferret → Bonatti</td></tr>
+        <tr><td><b>Day 6</b></td><td>15.3 km</td><td>Bonatti → Mont de la Saxe → Bertone → Courmayeur</td></tr>
+      </table>
+      <div style="margin-top:8px"><b>Main-route GPX distance:</b> 94.9 km</div>
+      <div style="margin-top:6px;font-size:12px">Chamonix is the trip start; the short Chamonix → Les Praz urban approach is not drawn as a fake straight line.</div>
+      <div class="mb-legend">
+        <b>Legend</b><br>
+        🟥 Day 1 &nbsp; 🟦 Day 2 &nbsp; 🟩 Day 3<br>
+        🟪 Day 4 &nbsp; 🟧 Day 5 &nbsp; 🟫 Day 6<br>
+        🛏️ sleep &nbsp; 🏘️ city/village &nbsp; ◉ viewpoint<br>
+        ★ key point &nbsp; S start &nbsp; E end<br>
+        <span style="color:#666">Optional</span> = not part of the revised main route<br>
+        <span style="color:#555;font-weight:bold">▣</span> Small number signs = every 1 km along the plotted main route
+      </div>
+    </div>
+    <script>
+      (function(){
+        const btn=document.getElementById('mbMenuBtn');
+        const panel=document.getElementById('mbMenuPanel');
+        if(!btn||!panel)return;
+        btn.addEventListener('click',()=>{
+          const open=panel.style.display==='block';
+          panel.style.display=open?'none':'block';
+          btn.textContent=open?'⋯':'×';
+        });
+        document.addEventListener('click',(e)=>{
+          if(panel.style.display==='block' && !panel.contains(e.target) && e.target!==btn){
+            panel.style.display='none'; btn.textContent='⋯';
+          }
+        });
+      })();
+    </script>
     
             <div class="folium-map" id="map_8c1c3ad304cc594dafc5cc5f4bec2d85" ></div>
         
@@ -4010,22 +4068,16 @@
                 layer_control_799e9578badab3debd67982dce63d66f_layers.overlays,
                 {
   "position": "topright",
-  "collapsed": false,
+  "collapsed": true,
   "autoZIndex": true,
 }
             ).addTo(map_8c1c3ad304cc594dafc5cc5f4bec2d85);
 
-            // SELECTED OPTIONAL ADDITION — DAY 4: exact La Fouly ↔ Ferret GPX out-and-back.
-            // Aiguillette des Posettes is already on the main Day 2 GPX, so it is NOT drawn as a yellow addition.
-            // The Ferret addition uses the exact recorded GPX geometry from the locally available TMB track,
-            // not straight-line waypoints and not a remote routing fallback.
+            // EVERY-KILOMETER MARKERS — plotted main route only.
+            // Uses the exact geometry of the six main-day GPX polylines; optional tracks are excluded.
             (function(){
               const m = map_8c1c3ad304cc594dafc5cc5f4bec2d85;
               if(!m || !window.L) return;
-              const yellow = '#ffd400';
-              const darkYellow = '#9a7a00';
-              const additions = L.featureGroup().addTo(m);
-              const coords = [[45.93373,7.09855],[45.93321,7.09864],[45.93322,7.099],[45.93233,7.09913],[45.93209,7.09907],[45.9319,7.09896],[45.93183,7.09884],[45.93182,7.09866],[45.93168,7.09853],[45.93129,7.09784],[45.93069,7.09716],[45.93017,7.09664],[45.9298,7.09619],[45.92958,7.09585],[45.92928,7.09559],[45.92887,7.09549],[45.92865,7.09553],[45.92846,7.09567],[45.92802,7.09617],[45.92767,7.09646],[45.92743,7.09658],[45.92725,7.09663],[45.92697,7.09667],[45.92669,7.09672],[45.92657,7.09667],[45.92647,7.09665],[45.92638,7.09663],[45.92625,7.09656],[45.92614,7.09658],[45.92603,7.09663],[45.92598,7.09664],[45.92594,7.09663],[45.92585,7.09648],[45.92581,7.09642],[45.92574,7.09639],[45.92564,7.09641],[45.92539,7.09647],[45.92534,7.09651],[45.92525,7.09652],[45.92521,7.09654],[45.92493,7.09666],[45.9248,7.09674],[45.92469,7.09676],[45.92462,7.09673],[45.92457,7.09667],[45.92457,7.09663],[45.92466,7.09647],[45.92478,7.0964],[45.92484,7.09633],[45.92486,7.09627],[45.92485,7.09621],[45.92482,7.09615],[45.92476,7.09609],[45.92463,7.09592],[45.92455,7.09584],[45.9245,7.09579],[45.92445,7.09572],[45.92444,7.0956],[45.92444,7.09553],[45.92436,7.09518],[45.92433,7.09511],[45.92428,7.095],[45.92426,7.095],[45.92425,7.09506],[45.92417,7.0952],[45.92414,7.09522],[45.92411,7.09526],[45.92407,7.09529],[45.924,7.09547],[45.92391,7.09566],[45.92382,7.09579],[45.92375,7.09588],[45.92367,7.09596],[45.9236,7.09601],[45.92352,7.09605],[45.92342,7.09607],[45.92332,7.09608],[45.9232,7.09607],[45.92312,7.09604],[45.92305,7.09598],[45.92301,7.09597],[45.92298,7.09601],[45.9229,7.0961],[45.92279,7.09615],[45.92273,7.09621],[45.92265,7.09628],[45.92259,7.09635],[45.92253,7.09642],[45.92245,7.09651],[45.92241,7.09662],[45.92237,7.09675],[45.92232,7.09685],[45.92229,7.09692],[45.92224,7.09698],[45.92214,7.09706],[45.92211,7.09711],[45.92208,7.09723],[45.92205,7.09722],[45.92202,7.09723],[45.92196,7.0973],[45.92187,7.0974],[45.92182,7.09745],[45.92175,7.0975],[45.92164,7.09752],[45.92157,7.09753],[45.92151,7.09756],[45.92144,7.09762],[45.92139,7.09768],[45.9213,7.09786],[45.92124,7.09793],[45.92116,7.09801],[45.92109,7.09806],[45.92096,7.09813],[45.92084,7.09819],[45.92072,7.09825],[45.9206,7.09833],[45.92046,7.09844],[45.92041,7.0985],[45.92036,7.09856],[45.92032,7.09859],[45.92029,7.09866],[45.92025,7.09878],[45.9202,7.09882],[45.92015,7.09884],[45.9201,7.09889],[45.92003,7.09898],[45.91999,7.09904],[45.91997,7.09909],[45.91993,7.09913],[45.91993,7.09917],[45.91992,7.09919],[45.91985,7.09924],[45.91981,7.09928],[45.91977,7.09932],[45.91974,7.09938],[45.91965,7.09945],[45.91957,7.09952],[45.9195,7.09958],[45.9195,7.0996],[45.91952,7.09968],[45.91952,7.09973],[45.91952,7.09984],[45.91951,7.0999],[45.91951,7.09998],[45.9195,7.10003],[45.91947,7.10011],[45.91946,7.10019],[45.91944,7.10023],[45.91942,7.10026],[45.91943,7.10038],[45.91939,7.10043],[45.91934,7.10048],[45.91929,7.10053],[45.91921,7.10059],[45.91912,7.10063],[45.91903,7.10066],[45.91898,7.10066],[45.9189,7.10064],[45.91888,7.10063],[45.91879,7.10065],[45.91874,7.10064],[45.91868,7.10061],[45.91864,7.10056],[45.91856,7.10055],[45.91848,7.10056],[45.91837,7.10059],[45.91832,7.10061],[45.91828,7.10063],[45.91813,7.10063],[45.91807,7.10066],[45.91801,7.10076],[45.91799,7.10096],[45.91796,7.10107],[45.91789,7.10118],[45.91781,7.10125],[45.91773,7.10135],[45.91781,7.10125],[45.91789,7.10118],[45.91796,7.10107],[45.91799,7.10096],[45.91801,7.10076],[45.91807,7.10066],[45.91813,7.10063],[45.91828,7.10063],[45.91832,7.10061],[45.91837,7.10059],[45.91848,7.10056],[45.91856,7.10055],[45.91864,7.10056],[45.91868,7.10061],[45.91874,7.10064],[45.91879,7.10065],[45.91888,7.10063],[45.9189,7.10064],[45.91898,7.10066],[45.91903,7.10066],[45.91912,7.10063],[45.91921,7.10059],[45.91929,7.10053],[45.91934,7.10048],[45.91939,7.10043],[45.91943,7.10038],[45.91942,7.10026],[45.91944,7.10023],[45.91946,7.10019],[45.91947,7.10011],[45.9195,7.10003],[45.91951,7.09998],[45.91951,7.0999],[45.91952,7.09984],[45.91952,7.09973],[45.91952,7.09968],[45.9195,7.0996],[45.9195,7.09958],[45.91957,7.09952],[45.91965,7.09945],[45.91974,7.09938],[45.91977,7.09932],[45.91981,7.09928],[45.91985,7.09924],[45.91992,7.09919],[45.91993,7.09917],[45.91993,7.09913],[45.91997,7.09909],[45.91999,7.09904],[45.92003,7.09898],[45.9201,7.09889],[45.92015,7.09884],[45.9202,7.09882],[45.92025,7.09878],[45.92029,7.09866],[45.92032,7.09859],[45.92036,7.09856],[45.92041,7.0985],[45.92046,7.09844],[45.9206,7.09833],[45.92072,7.09825],[45.92084,7.09819],[45.92096,7.09813],[45.92109,7.09806],[45.92116,7.09801],[45.92124,7.09793],[45.9213,7.09786],[45.92139,7.09768],[45.92144,7.09762],[45.92151,7.09756],[45.92157,7.09753],[45.92164,7.09752],[45.92175,7.0975],[45.92182,7.09745],[45.92187,7.0974],[45.92196,7.0973],[45.92202,7.09723],[45.92205,7.09722],[45.92208,7.09723],[45.92211,7.09711],[45.92214,7.09706],[45.92224,7.09698],[45.92229,7.09692],[45.92232,7.09685],[45.92237,7.09675],[45.92241,7.09662],[45.92245,7.09651],[45.92253,7.09642],[45.92259,7.09635],[45.92265,7.09628],[45.92273,7.09621],[45.92279,7.09615],[45.9229,7.0961],[45.92298,7.09601],[45.92301,7.09597],[45.92305,7.09598],[45.92312,7.09604],[45.9232,7.09607],[45.92332,7.09608],[45.92342,7.09607],[45.92352,7.09605],[45.9236,7.09601],[45.92367,7.09596],[45.92375,7.09588],[45.92382,7.09579],[45.92391,7.09566],[45.924,7.09547],[45.92407,7.09529],[45.92411,7.09526],[45.92414,7.09522],[45.92417,7.0952],[45.92425,7.09506],[45.92426,7.095],[45.92428,7.095],[45.92433,7.09511],[45.92436,7.09518],[45.92444,7.09553],[45.92444,7.0956],[45.92445,7.09572],[45.9245,7.09579],[45.92455,7.09584],[45.92463,7.09592],[45.92476,7.09609],[45.92482,7.09615],[45.92485,7.09621],[45.92486,7.09627],[45.92484,7.09633],[45.92478,7.0964],[45.92466,7.09647],[45.92457,7.09663],[45.92457,7.09667],[45.92462,7.09673],[45.92469,7.09676],[45.9248,7.09674],[45.92493,7.09666],[45.92521,7.09654],[45.92525,7.09652],[45.92534,7.09651],[45.92539,7.09647],[45.92564,7.09641],[45.92574,7.09639],[45.92581,7.09642],[45.92585,7.09648],[45.92594,7.09663],[45.92598,7.09664],[45.92603,7.09663],[45.92614,7.09658],[45.92625,7.09656],[45.92638,7.09663],[45.92647,7.09665],[45.92657,7.09667],[45.92669,7.09672],[45.92697,7.09667],[45.92725,7.09663],[45.92743,7.09658],[45.92767,7.09646],[45.92802,7.09617],[45.92846,7.09567],[45.92865,7.09553],[45.92887,7.09549],[45.92928,7.09559],[45.92958,7.09585],[45.9298,7.09619],[45.93017,7.09664],[45.93069,7.09716],[45.93129,7.09784],[45.93168,7.09853],[45.93182,7.09866],[45.93183,7.09884],[45.9319,7.09896],[45.93209,7.09907],[45.93233,7.09913],[45.93322,7.099],[45.93321,7.09864],[45.93373,7.09855]];
 
               function hav(a,b){
                 const R=6371, rad=Math.PI/180;
@@ -4033,38 +4085,68 @@
                 const x=Math.sin(dLat/2)**2 + Math.cos(a[0]*rad)*Math.cos(b[0]*rad)*Math.sin(dLon/2)**2;
                 return 2*R*Math.asin(Math.sqrt(x));
               }
-              function lineKm(c){
-                let d=0;
-                for(let i=1;i<c.length;i++) d+=hav(c[i-1],c[i]);
-                return d;
+              function addGroupPoints(arr, group){
+                if(!group) return;
+                const line=group.getLayers().find(layer=>layer instanceof L.Polyline && !(layer instanceof L.Polygon));
+                if(!line) return;
+                const pts=line.getLatLngs();
+                pts.forEach(ll=>{
+                  const p=[ll.lat,ll.lng];
+                  if(!arr.length || hav(arr[arr.length-1],p)>0.0005) arr.push(p);
+                });
               }
-              const km=lineKm(coords);
-              const line=L.polyline(coords,{color:yellow,weight:6,opacity:0.98,lineCap:'round',lineJoin:'round',interactive:true}).addTo(additions);
-              line.bindTooltip('DAY 4 ADDITION · La Fouly ↔ Ferret · exact GPX · '+km.toFixed(1)+' km',{sticky:true});
-              line.bindPopup('<div style="min-width:320px"><b>DAY 4 ADDITION — La Fouly ↔ Ferret</b><br>Yellow line = exact recorded GPX out-and-back.<br><b>Distance shown on map:</b> '+km.toFixed(2)+' km<br><b>Turnaround:</b> Ferret<br><br>No straight-line segments are used for this addition.</div>');
 
-              const start=L.circleMarker([45.93373,7.09855],{radius:7,color:darkYellow,weight:2,fillColor:yellow,fillOpacity:1}).addTo(additions);
-              start.bindTooltip('Day 4 addition start · La Fouly',{sticky:true});
-              start.bindPopup('<b>La Fouly — Day 4 addition starts here</b><br>Follow the yellow exact GPX to Ferret, then return on the same recorded trail.');
+              const route=[];
+              [
+                feature_group_687ac3fa77feedfaf107ae37b8165d8b,
+                feature_group_886fd81c46ca2717aeb6aa6da65be576,
+                feature_group_aa70684da55f0f790f02ba897244c780,
+                feature_group_bf31ccdbc5ca936956afd08c47e417ac,
+                feature_group_8406476fa2e193e38bc6e912dfe3eae3,
+                feature_group_fd8219b742687c23c5dcbc2d703ff6e3
+              ].forEach(g=>addGroupPoints(route,g));
 
-              const ferret=L.circleMarker([45.91773,7.10135],{radius:8,color:darkYellow,weight:2,fillColor:yellow,fillOpacity:1}).addTo(additions);
-              ferret.bindTooltip('Ferret — turnaround / lunch stop',{sticky:true});
-              ferret.bindPopup('<div style="min-width:280px"><b>Ferret</b><br>Turnaround point for the Day 4 addition.<br><br><a href="https://www.google.com/search?tbm=isch&q=Ferret+Val+Ferret+Switzerland" target="_blank">📷 View photos</a></div>');
+              if(route.length<2) return;
 
-              const optionalControl=L.control({position:'topright'});
-              optionalControl.onAdd=function(){
-                const div=L.DomUtil.create('div','leaflet-control');
-                div.style.background='#fff';
-                div.style.padding='7px 9px';
-                div.style.border='1px solid #999';
-                div.style.borderRadius='6px';
-                div.style.boxShadow='0 1px 5px rgba(0,0,0,.25)';
-                div.style.font='12px Arial';
-                div.innerHTML='<b style="color:#9a7a00">🟨 Selected addition</b><br>Day 4 · La Fouly ↔ Ferret<br><small>Exact GPX · '+km.toFixed(1)+' km</small>';
-                L.DomEvent.disableClickPropagation(div);
-                return div;
-              };
-              optionalControl.addTo(m);
+              const prefix=[0];
+              for(let i=1;i<route.length;i++) prefix.push(prefix[i-1]+hav(route[i-1],route[i]));
+              const totalKm=prefix[prefix.length-1];
+
+              function pointAtKm(km){
+                if(km<=0) return route[0];
+                if(km>=totalKm) return route[route.length-1];
+                let lo=0, hi=prefix.length-1;
+                while(hi-lo>1){
+                  const mid=(lo+hi)>>1;
+                  if(prefix[mid]<km) lo=mid; else hi=mid;
+                }
+                const span=prefix[hi]-prefix[lo]||1;
+                const t=(km-prefix[lo])/span;
+                return [
+                  route[lo][0]+(route[hi][0]-route[lo][0])*t,
+                  route[lo][1]+(route[hi][1]-route[lo][1])*t
+                ];
+              }
+
+              const kmLayer=L.layerGroup().addTo(m);
+              const lastKm=Math.floor(totalKm);
+              for(let km=1; km<=lastKm; km++){
+                const icon=L.divIcon({
+                  html:'<div class="mb-km-sign">'+km+'</div>',
+                  className:'mb-km-icon',
+                  iconSize:[28,22],
+                  iconAnchor:[14,11]
+                });
+                L.marker(pointAtKm(km),{
+                  icon:icon,
+                  interactive:false,
+                  keyboard:false,
+                  zIndexOffset:1200
+                }).addTo(kmLayer);
+              }
+              if(typeof layer_control_799e9578badab3debd67982dce63d66f!=='undefined'){
+                layer_control_799e9578badab3debd67982dce63d66f.addOverlay(kmLayer,'Every 1 km');
+              }
             })();
 
             // MOVING DOT — main six-day route only (optional yellow loops are not included).
